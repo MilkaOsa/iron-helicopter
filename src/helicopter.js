@@ -27,17 +27,42 @@ class Helicopter {
   }
 
   draw() {
-    // TODO: draw helicopter image
+    this.ctx.drawImage(
+      this.img,
+      0, 
+      (this.img.frameIndex / this.img.frames) * this.img.height,
+      this.img.width,
+      this.img.height / this.img.frames,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    );
+    this.tick++;
+    if (this.tick > 10) {
+      this.tick = 0;
+      this.img.frameIndex++;
+      if (this.img.frameIndex > 2) {
+        this.img.frameIndex = 0;
+      }
+    }
 
-    this.weapon.draw();
+
+
+    //this.weapon.draw();
+
+
   }
-
-  isFloor() {
-    // TODO: check if floor
-  }
-
   move() {
-    // TODO: move
+    this.vy += this.ay;
+    this.vx += this.ax;
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.y + this.h >= this.ctx.canvas.height - 80) {
+      this.vy = 0;
+      this.y = this.ctx.canvas.height - this.h - 80;
+      this.isJumping = false;
+    }
   }
 
   onKeyEvent(event) {

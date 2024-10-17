@@ -11,6 +11,11 @@ class Game {
 
   start() {
     // TODO: loop. clear, draw, move, addObstacle
+    this.intervalId =  setInterval (() => {
+      this.clear();
+      this.draw();
+      this.move();
+     }, 1000/60);
   }
 
   addObstacle() {
@@ -22,14 +27,17 @@ class Game {
   }
 
   draw() {
-    // TODO: draw everything
+      this.bg.draw();
+      this.helicopter.draw();
   }
 
   move() {
-    // TODO: move everything
+    this.bg.move();
+    this.helicopter.move();
   }
 
   onKeyEvent(event) {
     // TODO
   }
 }
+
