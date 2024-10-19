@@ -1,28 +1,32 @@
 class Weapon {
   constructor(shooter) {
+    // Referencia al objeto que dispara (el helicóptero en este caso)
     this.shooter = shooter;
-    this.bullets = []
+
+    // Array para almacenar las balas disparadas
+    this.bullets = [];
   }
 
+  // Método para disparar una nueva bala
   shoot() {
+    // Crea una nueva instancia de `Bullet` con la posición inicial ajustada
     const bullet = new Bullet(
       this.shooter.ctx,
-      this.shooter.x + this.shooter.w * 0.8,
-      this.shooter.y + this.shooter.h * 0.9,
-    )
+      this.shooter.x + this.shooter.w * 0.8, // Posición horizontal (frente del helicóptero)
+      this.shooter.y + this.shooter.h * 0.9  // Posición vertical (cerca de la parte inferior del helicóptero)
+    );
 
-    this.bullets.push(bullet)
+    // Agrega la nueva bala al array de balas
+    this.bullets.push(bullet);
   }
 
+  // Método para eliminar las balas que ya no son visibles
   clearBullets() {
-    this.bullets = this.bullets.filter(b => b.isVisible())
+    // Filtra solo las balas que siguen siendo visibles en el canvas
+    this.bullets = this.bullets.filter(b => b.isVisible());
   }
 
-  draw() {
-    this.bullets.forEach(b => b.draw())
-  }
-
-  move() {
-    this.bullets.forEach(b => b.move())
-  }
+  // Método para dibujar todas las balas en el canvas
+  draw() 
 }
+   
